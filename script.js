@@ -32,7 +32,7 @@ function loadStoredData() {
     )
 }
 
-function handleSaveClick() {
+function handleSaveClick(event) {
     // grab data from html
     var hourBlock = $(event.target).parent();
     var value = hourBlock.children("textarea").val();
