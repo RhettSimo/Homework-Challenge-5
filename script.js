@@ -10,13 +10,13 @@ function setHourColors() {
         } else if (i == now.hour()) {
             $("#hour-" + i + " textarea").addClass("present");     
         } else if (i > now.hour()) {
-            $("#hour-" + i + " textarea").addclass("future");
+            $("#hour-" + i + " textarea").addClass("future");
         }
     }
 }
 
 function loadStoredData() {
-    var eventsData =  JSON.parse(localStorage.getItem("calendarEvents"));
+    eventsData =  JSON.parse(localStorage.getItem("calendarEvents"));
     if (!eventsData) (
         eventsData = {
             hour9: "",
@@ -30,19 +30,31 @@ function loadStoredData() {
             hour17: "",
         }
     )
+    console.log(eventsData);
+    $('#hour-9 textarea').text(localStorage.getItem('hour-9'));
+    $('#hour-10 textarea').text(localStorage.getItem('hour-10'));
+    $('#hour-11 textarea').text(localStorage).getItem('hour-11');
+    $('#hour-12 textarea').text(localStorage).getItem('hour-12')
+    $('#hour-13 textarea').text(localStorage).getItem('hour-13')
+    $('#hour-14 textarea').text(localStorage).getItem('hour-14')
+    $('#hour-15 textarea').text(localStorage).getItem('hour-15')
+    $('#hour-16 textarea').text(localStorage).getItem('hour-16')
+    $('#hour-17 textarea').text(localStorage).getItem('hour-17')
+
 }
+
 
 function handleSaveClick(event) {
     // grab data from html
     var hourBlock = $(event.target).parent();
     var value = hourBlock.children("textarea").val();
     var hour = hourBlock.attr('id').split("-")[1];
-
+    var time = hourBlock.attr('id')
     // modify data object
     eventsData["hour" + hour] = value;
     
     // store data in local storage
-    localStorage.setItem("calendarEvents", JSON.stringify(eventsData));
+    localStorage.setItem(time, value);
 }
 
 $('.saveBtn').on('click', handleSaveClick);
